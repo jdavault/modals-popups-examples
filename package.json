@@ -1,0 +1,33 @@
+{
+  "name": "modals-popups-examples",
+  "version": "1.0.0",
+  "scripts": {
+    "build:ios:native": "rimraf -rf node_modules/.cache/babel-loader/* && rimraf -rf .expo && expo prebuild --clean -p ios",
+    "build:web": "rimraf -rf node_modules/.cache/babel-loader/* && rimraf -rf .expo && expo export:web -c && rimraf -rf web-build/pwa && rimraf -rf web-build/static/js/*.js.map && cd ./web-build && zip -r ../communidy.zip . && cd ..",
+    "deploy:web": "./cicd/updatePackageHomepage.sh && npm run build:web && ./cicd/removeSourceMaps.sh && ./cicd/replaceScriptBlock.sh && ./cicd/deployArchive.sh",
+    "start": "expo start --dev-client --clear",
+    "start-clear": "expo start --clear",
+    "android": "expo run:android",
+    "ios:native": "rimraf -rf node_modules/.cache/babel-loader/* && rimraf -rf .expo && expo run:ios",
+    "ios": "expo run:ios",
+    "web": "rimraf -rf node_modules/.cache/babel-loader/* && rimraf -rf .expo && expo start -w -c",
+    "eject": "expo eject",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@expo/webpack-config": "^0.17.2",
+    "expo": "~47.0.14",
+    "expo-status-bar": "~1.4.2",
+    "expo-build-properties": "~0.4.1",
+    "expo-av": "~13.0.3",
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "react-native": "0.70.8",
+    "react-native-web": "~0.18.9",
+    "expo-splash-screen": "~0.17.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9"
+  },
+  "private": true
+}
